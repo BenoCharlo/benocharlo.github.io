@@ -6,9 +6,18 @@
 
 module.exports = {
   siteMetadata: {
-    title: `DOKODJO personal blog`,
+    title: `DOKODJO's blog`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
