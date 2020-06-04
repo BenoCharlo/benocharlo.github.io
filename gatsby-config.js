@@ -1,12 +1,9 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
   siteMetadata: {
-    title: `DOKODJO's blog`,
+    title: `My professional blog`,
+    description: `A simple professional blog for hosting content about data science 
+                  essentially but for webapps I build as well`,
+    author: `DOKODJO Kwassi Beno-Charles (simply BenoCharlo🔅)`,
   },
   plugins: [
     {
@@ -39,5 +36,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
   ],
 }
