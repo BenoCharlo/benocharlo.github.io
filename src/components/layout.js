@@ -4,15 +4,12 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
 import Header from "./header"
 
-const ListLink = props => (
-  <li style={{ display: `inline-block`, marginRight: `1rem` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-)
-
 export default function Layout({ children }) {
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ margin: `1.5rem auto`, maxWidth: 850, padding: `0 1rem` }}
+    >
       <Header />
       {children}
     </div>
