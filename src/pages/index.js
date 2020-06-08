@@ -8,11 +8,12 @@ const BlogListWrapper = styled.div`
   transition: ${props => props.theme.transition};
   margin: 40px 0 25px;
   a {
-    color: black;
+    color: ${props => props.theme.textColor};
     text-decoration: none;
     h2 {
       margin: 10px 0 10px;
       font-size: 1.8rem;
+      color: black;
     }
     h3 {
       font-size: 1rem;
@@ -20,28 +21,27 @@ const BlogListWrapper = styled.div`
       margin: 8px 0 15px;
     }
     h4 {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       margin: 8px 0 15px;
+      color: black;
     }
     ul {
       list-style-type: none;
       display: flex;
       flex-direction: row;
       margin: 0;
+      color: purple;
       height: auto;
       .listingTag {
-        margin: 0 8px 5px 0;
         font-size: 0.8rem;
         h5 {
-          color: ${props => props.theme.accentColor};
+          color: red;
         }
       }
     }
-    h3 {
-      margin-bottom: 10px;
-    }
     p {
       margin-bottom: 20px;
+      color: black;
     }
     .readMore {
       display: flex;
@@ -56,7 +56,7 @@ const BlogListWrapper = styled.div`
       transition: 0.3s;
       p {
         background-color: rgba(0, 0, 0, 0);
-        color: ${props => props.theme.bgColor};
+        color: black;
         margin: 0;
       }
       .rightArrow {
@@ -88,6 +88,9 @@ export default function Home({ data }) {
                 Published:{" "}
                 <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
               </h4>
+              <ul>
+                <h5>{node.frontmatter.tags}</h5>
+              </ul>
               <p>{node.excerpt}</p>
             </Link>
           </div>
@@ -107,6 +110,7 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            tags
           }
           fields {
             slug

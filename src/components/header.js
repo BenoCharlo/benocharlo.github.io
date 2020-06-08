@@ -5,12 +5,16 @@ const Header = ({}) => {
   return (
     <div>
       <header style={{ marginBottom: `1.5rem` }}>
-        <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-          <h5 style={{ display: `inline` }}>🔅BenoCharlo 🔅</h5>
+        <Link to="/" style={{ textDecorationLine: `none` }}>
+          🔅BenoCharlo 🔅
         </Link>
         <ul style={{ listStyle: `none`, float: `right` }}>
-          <Link to="/about">About</Link>{" "}
-          <Link to="/certifications">Certifs</Link>
+          <Link to="/about" style={{ textDecorationLine: `none` }}>
+            About
+          </Link>{" "}
+          <Link to="/certifications" style={{ textDecorationLine: `none` }}>
+            Certifs
+          </Link>
         </ul>
       </header>
     </div>
