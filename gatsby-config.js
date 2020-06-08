@@ -3,7 +3,7 @@ module.exports = {
     title: `My professional blog`,
     description: `A simple professional blog for hosting content about data science 
                   essentially but for webapps I build as well`,
-    author: `BenoCharlo🔅`,
+    author: `🔅BenoCharlo 🔅`,
   },
   plugins: [
     {
@@ -14,7 +14,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
-    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
