@@ -8,7 +8,7 @@ const BlogListWrapper = styled.div`
   transition: ${props => props.theme.transition};
   margin: 40px 0 25px;
   a {
-    color: ${props => props.theme.textColor};
+    color: black;
     text-decoration: none;
     h2 {
       margin: 10px 0 10px;
@@ -17,6 +17,10 @@ const BlogListWrapper = styled.div`
     h3 {
       font-size: 1rem;
       font-weight: 300;
+      margin: 8px 0 15px;
+    }
+    h4 {
+      font-size: 0.8rem;
       margin: 8px 0 15px;
     }
     ul {
@@ -80,10 +84,10 @@ export default function Home({ data }) {
           <div key={node.id}>
             <Link to={node.fields.slug}>
               <h2>{node.frontmatter.title} </h2>
-              <h3>
+              <h4>
                 Published:{" "}
                 <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
-              </h3>
+              </h4>
               <p>{node.excerpt}</p>
             </Link>
           </div>
