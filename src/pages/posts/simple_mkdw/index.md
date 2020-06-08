@@ -1,8 +1,7 @@
 ---
-title: "My page😆"
+title: "First post ... (loading 📝)"
 date: "2020-03-10"
+tags: tag1 tag2 tag3
 ---
 
-HÉ HÉ je viens de créer une nouvelle page mkdwn
-
-Quel pieds!!!
+This post excerpt. It contains elements about the content of the posts
