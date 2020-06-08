@@ -1,7 +1,4 @@
 import React from "react"
-import { css } from "@emotion/core"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import { rhythm } from "../utils/typography"
 import Header from "./header"
 
 export default function Layout({ children }) {
