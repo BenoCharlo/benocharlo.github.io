@@ -30,8 +30,7 @@
     "react-moment": "^0.9.7",
     "react-typography": "^0.16.19",
     "styled-components": "^5.1.1",
-    "typography": "^0.16.19",
-    "typography-theme-kirkham": "^0.16.19"
+    "typography": "^0.16.19"
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",
