@@ -5,7 +5,6 @@ import Moment from "react-moment"
 import styled from "styled-components"
 
 const BlogListWrapper = styled.div`
-  border-bottom: 4px solid ${props => props.theme.textColor};
   transition: ${props => props.theme.transition};
   margin: 40px 0 25px;
   a {
@@ -75,23 +74,21 @@ const BlogListWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <Layout>
-      <div>
-        <h1>Publications</h1>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <BlogListWrapper>
-            <div key={node.id}>
-              <Link to={node.fields.slug}>
-                <h2>{node.frontmatter.title} </h2>
-                <h3>
-                  Published:{" "}
-                  <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
-                </h3>
-                <p>{node.excerpt}</p>
-              </Link>
-            </div>
-          </BlogListWrapper>
-        ))}
-      </div>
+      <h1>Publications</h1>
+      {data.allMarkdownRemark.edges.map(({ node }) => (
+        <BlogListWrapper>
+          <div key={node.id}>
+            <Link to={node.fields.slug}>
+              <h2>{node.frontmatter.title} </h2>
+              <h3>
+                Published:{" "}
+                <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
+              </h3>
+              <p>{node.excerpt}</p>
+            </Link>
+          </div>
+        </BlogListWrapper>
+      ))}
     </Layout>
   )
 }
