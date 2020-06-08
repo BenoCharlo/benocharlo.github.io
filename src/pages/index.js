@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import Layout from "../components/layout"
 import Moment from "react-moment"
 import styled from "styled-components"
@@ -102,6 +102,12 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
