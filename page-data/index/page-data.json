@@ -1,1 +1,1 @@
-{"componentChunkName":"component---src-pages-index-js","path":"/","result":{"pageContext":{}}}
+{"componentChunkName":"component---src-pages-index-js","path":"/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"id":"484befb7-24c6-561c-82c1-9511299f6692","frontmatter":{"title":"First post ... (loading 📝)","date":"10 March, 2020","tags":"tag1 tag2 tag3"},"fields":{"slug":"/posts/simple_mkdw/"},"excerpt":"This post excerpt. It contains elements about the content of the posts"}}]}},"pageContext":{}}}
