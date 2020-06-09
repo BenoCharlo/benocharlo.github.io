@@ -55,7 +55,7 @@ const BlogListWrapper = styled.div`
       align-items: center;
       justify-content: space-around;
       width: 102px;
-      height: 47px;
+      height: 37px;
       margin: -10px 0 15px;
       padding: 8px;
       background-color: lightgray;
