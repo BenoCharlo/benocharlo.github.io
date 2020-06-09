@@ -3,6 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Layout from "../components/layout"
 import Moment from "react-moment"
 import styled from "styled-components"
+import RightArrow from "../images/svg/RightArrowSVG"
 
 const BlogListWrapper = styled.div`
   transition: ${props => props.theme.transition};
@@ -23,6 +24,11 @@ const BlogListWrapper = styled.div`
     h4 {
       font-size: 0.9rem;
       margin: 8px 0 15px;
+      color: black;
+    }
+    h5 {
+      font-size: 0.85rem;
+      margin: 3px 0 15px;
       color: black;
     }
     ul {
@@ -48,19 +54,20 @@ const BlogListWrapper = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      width: 142px;
+      width: 102px;
       height: 47px;
       margin: -10px 0 15px;
       padding: 8px;
-      background-color: ${props => props.theme.accentColor};
+      background-color: lightgray;
       transition: 0.3s;
       p {
         background-color: rgba(0, 0, 0, 0);
         color: black;
         margin: 0;
+        font-size: 0.85rem;
       }
       .rightArrow {
-        height: 18px;
+        height: 15px;
         .icon {
           transition: ${props => props.theme.transition};
           fill: ${props => props.theme.bgColor};
@@ -94,6 +101,12 @@ export default function Home({ data }) {
             </ul> */}
             <p>{node.excerpt}</p>
           </div>
+          <Link to={node.fields.slug}>
+            <div className="readMore">
+              <p>Read more</p>
+              <RightArrow />
+            </div>
+          </Link>
         </BlogListWrapper>
       ))}
     </Layout>
