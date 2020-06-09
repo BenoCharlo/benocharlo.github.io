@@ -29,8 +29,8 @@ const BlogListWrapper = styled.div`
       list-style-type: none;
       display: flex;
       flex-direction: row;
-      margin: 0;
       color: purple;
+      margin-bottom: 5px;
       height: auto;
       .listingTag {
         font-size: 0.8rem;
@@ -84,15 +84,15 @@ export default function Home({ data }) {
           <div key={node.id}>
             <Link to={node.fields.slug}>
               <h2>{node.frontmatter.title} </h2>
-              <h4>
-                Published:{" "}
-                <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
-              </h4>
-              <ul>
-                <h5>{node.frontmatter.tags}</h5>
-              </ul>
-              <p>{node.excerpt}</p>
             </Link>
+            <h4>
+              Published:{" "}
+              <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
+            </h4>
+            {/* <ul>
+              <h5>{node.frontmatter.tags}</h5>
+            </ul> */}
+            <p>{node.excerpt}</p>
           </div>
         </BlogListWrapper>
       ))}
