@@ -6,9 +6,6 @@ const Header = () => {
     <div>
       <header style={{ marginBottom: `1.5rem` }}>
         <Link to="/" style={{ textDecorationLine: `none` }}>
-          <span role="img" aria-label="sunlight">
-            🔅
-          </span>
           BenoCharlo{" "}
           <span role="img" aria-label="sunlight">
             🔅
