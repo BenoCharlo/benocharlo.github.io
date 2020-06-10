@@ -4,6 +4,8 @@ module.exports = {
     description: `A simple professional blog for hosting content about data science 
                   essentially but for webapps I build as well`,
     author: `🔅BenoCharlo 🔅`,
+    authorLinkedIn: `https://www.linkedin.com/in/beno-charles-dokodjo-26234210b/`,
+    authorGithub: `https://github.com/BenoCharlo`,
   },
   plugins: [
     {
