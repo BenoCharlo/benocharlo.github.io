@@ -77,7 +77,7 @@ const BlogListWrapper = styled.div`
   }
   &:hover {
     .readMore {
-      box-shadow: 0 3px 9px #4d4d4d;
+      box-shadow: 0 3px 6px #4d4d4d;
     }
   }
 `

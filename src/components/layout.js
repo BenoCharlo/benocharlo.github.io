@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <div
       className="container"
-      style={{ margin: `1.5rem auto`, maxWidth: 850, padding: `0 1rem` }}
+      style={{ margin: `2rem auto`, maxWidth: 850, padding: `0 1rem` }}
     >
       <Header />
       {children}
