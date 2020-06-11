@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `DOKODJO K. Beno-Charles`,
+    title: `BenoBlog`,
     description: `A personal blog for hosting content about data science`,
     author: `🔅BenoCharlo`,
     url: `https://www.benocharlo.com`,
