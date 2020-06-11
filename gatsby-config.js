@@ -3,7 +3,7 @@ module.exports = {
     title: `DOKODJO K. Beno-Charles`,
     description: `A personal blog for hosting content about data science`,
     author: `🔅BenoCharlo`,
-    url: `benocharlo.com`,
+    url: `https://www.benocharlo.com`,
     image: `src/static/favicon-32x32.png`,
     authorLinkedIn: `https://www.linkedin.com/in/beno-charles-dokodjo-26234210b/`,
     authorGithub: `https://github.com/BenoCharlo`,
