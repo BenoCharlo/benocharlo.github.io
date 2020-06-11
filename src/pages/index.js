@@ -83,6 +83,8 @@ const BlogListWrapper = styled.div`
   }
 `
 
+const siteMetadata = this.props.data.site.siteMetadata
+
 export default function Home({ data }) {
   return (
     <Layout>
