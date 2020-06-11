@@ -84,11 +84,9 @@ const BlogListWrapper = styled.div`
 `
 
 export default function Home({ data }) {
-  const siteMetadata = this.props.data.site.siteMetadata
-
   return (
     <Layout>
-      <SEO {...siteMetadata} />
+      <SEO {...data.site.siteMetadata} />
       <h1>Posts</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogListWrapper>
