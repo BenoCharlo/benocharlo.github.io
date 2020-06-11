@@ -36,10 +36,10 @@ export default function Header() {
         {/* <ul style={{ listStyle: `none`, marginLeft: 0 }}> */}
         <HeaderLinks style={{ listStyle: `none`, marginLeft: 0 }}>
           <Link to="/" style={{ textDecorationLine: `none` }}>
-            BenoCharlo{" "}
             <span role="img" aria-label="sunlight">
               🔅
             </span>
+            BenoCharlo{" "}
           </Link>{" "}
           <a
             target="_blank"
