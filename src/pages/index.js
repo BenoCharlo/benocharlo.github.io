@@ -77,7 +77,7 @@ const BlogListWrapper = styled.div`
   }
   &:hover {
     .readMore {
-      box-shadow: 0 3px 6px #4d4d4d;
+      box-shadow: 0 1px 4px #4d4d4d;
     }
   }
 `
@@ -85,7 +85,7 @@ const BlogListWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <Layout>
-      <h1>Publications</h1>
+      <h1>Posts</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogListWrapper>
           <div key={node.id}>
