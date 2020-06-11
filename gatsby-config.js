@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `beno charlo - personal and technology blog`,
-    description: `A simple professional blog for hosting content about data science 
-                  essentially but for webapps I build as well`,
-    author: `🔅BenoCharlo 🔅`,
+    title: `DOKODJO K. Beno-Charles`,
+    description: `A personal blog for hosting content about data science`,
+    author: `🔅BenoCharlo`,
+    url: `benocharlo.com`,
+    image: `src/static/favicon-32x32.png`,
     authorLinkedIn: `https://www.linkedin.com/in/beno-charles-dokodjo-26234210b/`,
     authorGithub: `https://github.com/BenoCharlo`,
   },
