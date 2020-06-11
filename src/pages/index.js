@@ -83,9 +83,9 @@ const BlogListWrapper = styled.div`
   }
 `
 
-const siteMetadata = this.props.data.site.siteMetadata
-
 export default function Home({ data }) {
+  const siteMetadata = this.props.data.site.siteMetadata
+
   return (
     <Layout>
       <SEO {...siteMetadata} />
