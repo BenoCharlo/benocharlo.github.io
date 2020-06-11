@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import Moment from "react-moment"
 import styled from "styled-components"
 import RightArrow from "../images/svg/RightArrowSVG"
@@ -85,6 +86,7 @@ const BlogListWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <Layout>
+      <SEO {...siteMetadata} />
       <h1>Posts</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogListWrapper>
@@ -119,6 +121,8 @@ export const query = graphql`
       siteMetadata {
         title
         description
+        url
+        image
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
