@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 import Moment from "react-moment"
 import styled from "styled-components"
 import RightArrow from "../images/svg/RightArrowSVG"
@@ -86,7 +85,6 @@ const BlogListWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <Layout>
-      <SEO {...data.site.siteMetadata} />
       <h1>Posts</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogListWrapper>
