@@ -61,9 +61,9 @@ export default function Header() {
             <Link to="/about" style={{ textDecorationLine: `none` }}>
               About
             </Link>{" "}
-            <Link to="/certifications" style={{ textDecorationLine: `none` }}>
+            {/* <Link to="/certifications" style={{ textDecorationLine: `none` }}>
               Certifs
-            </Link>
+            </Link> */}
           </ul>
         </HeaderLinks>
       </header>
