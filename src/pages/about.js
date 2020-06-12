@@ -5,16 +5,20 @@ import personalImage from "../images/My_photo.jpg"
 
 const Image = styled.img`
   background-image: url(${personalImage});
-  width: 290px;
-  height: 360px;
-  display: flex;
-  margin: 0 105px 15px 300px;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`
+const H1 = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
 `
 
 export default function About({ data }) {
   return (
     <Layout>
-      <h1 style={{ marginLeft: `350px` }}> About me</h1>
+      <H1> About me</H1>
       <Image src={personalImage} />
       <p>
         I am Beno-Charles Kwassi DOKODJO, a data scientist living in Paris. I am
