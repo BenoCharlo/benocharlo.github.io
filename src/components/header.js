@@ -45,14 +45,14 @@ export default function Header() {
             target="_blank"
             href={data.site.siteMetadata.authorLinkedIn}
             aria-label="My LinkedIn profile"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             <Linkedin />
           </a>{" "}
           <a
             target="_blank"
             href={data.site.siteMetadata.authorGithub}
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="My Github page"
           >
             <Github />

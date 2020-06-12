@@ -22,7 +22,7 @@ export default function About({ data }) {
         <a
           style={{ textDecorationLine: `none` }}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           href="https://www.capgemini.com/service/invent/"
         >
           Capgemini Invent
@@ -34,7 +34,7 @@ export default function About({ data }) {
         <a
           style={{ textDecorationLine: `none` }}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           href="http://ensai.fr/"
         >
           ENSAI
