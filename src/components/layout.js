@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Header from "./header"
 import SEO from "../components/seo"
 import { graphql, useStaticQuery } from "gatsby"
