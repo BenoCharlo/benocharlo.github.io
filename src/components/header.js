@@ -6,19 +6,6 @@ import fadeInUpward from "../styles/_animations/fadeInUpward"
 import styled from "styled-components"
 import "../styles/hamburgers.css"
 
-const HeaderLinks = styled.ul`
-  transition: ${props => props.theme.transition};
-  liststyle: none;
-  margin-left: 0;
-  .a {
-    animation: ${fadeInUpward} 1s;
-    transition: 0.2s;
-  }
-  .a:hover {
-    transform: translateY(-10px);
-  }
-`
-
 const HeaderWrapper = styled.header`
   position: fixed;
   z-index: 5;
