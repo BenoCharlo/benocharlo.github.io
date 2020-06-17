@@ -28,7 +28,7 @@ const LayoutWrapper = styled.div`
   main {
     transition: ${props => props.theme.transition};
     background-color: ${props => props.theme.bgColor};
-    width: 50%;
+    width: 50vw;
     padding: 12px 0px 24px;
     margin: 60px auto;
     display: flex;
