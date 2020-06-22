@@ -12,7 +12,7 @@ const BlogListWrapper = styled.div`
     color: ${props => props.theme.textColor};
     text-decoration: none;
     h2 {
-      margin: 10px 0 10px;
+      margin: 5px 0 10px;
       font-size: 1.8rem;
       color: black;
     }

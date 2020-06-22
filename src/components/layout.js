@@ -11,7 +11,10 @@ const LayoutWrapper = styled.div`
   background-color: ${props => props.theme.bgColor};
   padding: 15px;
   min-height: 100vh;
-  h1,
+  h1 {
+    margin-bottom: 3px;
+  }
+  ,
   h2,
   h3,
   h4,
@@ -30,7 +33,7 @@ const LayoutWrapper = styled.div`
     background-color: ${props => props.theme.bgColor};
     width: 50vw;
     padding: 12px 0px 24px;
-    margin: 60px auto;
+    margin: 80px auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
