@@ -1,5 +1,5 @@
 ---
-title: "First post ... (loading 📝)"
+title: "Useful noise ... (loading 📝)"
 date: "2020-03-10"
 tags: tag1 tag2 tag3
 ---
