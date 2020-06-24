@@ -5,6 +5,8 @@ const typography = new Typography({
   baseLineHeight: 1.666,
   headerFontFamily: ["Helvetica", "georgia"],
   bodyFontFamily: ["Helvetica", "sans-serif"],
+  bodyColor: "black",
+  headerColor: "black",
   googleFonts: [
     {
       name: "Helvetica",
