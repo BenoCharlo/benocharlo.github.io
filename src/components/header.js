@@ -16,7 +16,7 @@ const HeaderWrapper = styled.header`
   background-color: white;
   transition: background-color ${props => props.theme.transition},
     box-shadow 0.3s;
-  box-shadow: ${props => (props.isScrolled ? "0px 0px 10px #4d4d4d" : "none")};
+  box-shadow: ${props => (props.isScrolled ? "0px 0px 8px #4d4d4d" : "none")};
   display: flex;
 
   .navContainer {
