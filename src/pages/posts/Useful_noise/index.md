@@ -13,15 +13,14 @@ Existing scientific litterature have shown **differential privacy** is an effect
 ## _Differential Privacy in a nutshell_
 
 Differential Privacy (DP) is a mechnaism design to protect information of individuals. Concretely, it introduces noise into the data in order to retain information from an attacker (any individual who might want to access information that is not intended to be disclosed). There exist two forms of (DP):
- 
+
 - the (classical) DP in which data is collected from every individuals and aggregated into a single database; the noise is then introduced in the aggregated result of the collected data before publishing.
 - the Local Differential Privacy (LDP) in which the noise is introduced in every individual data before centralization by the aggregator. No doubt that this setting is better than the previous one as individuals have not to trust the aggregator.
 
 The promise of DP is to ensure the plausible deniability of a user's information through a randomized process.
 
-
-
 ## _Sources_
+
 this massive data usage is not totally harmless for the end-users.
 A well known statistic informs us that one-third of US populations can be fully retrieved using the ZIP code, date of birth and ... This simply means, people's informations cannot feel priv
 Machine Learning applications collect and operate on a broad range of data. In a need to be collecting data, these applications These data can be sensitive in many cases (such as medical data or dating) and can be potentially harmful to individuals if revealed widely. The increasing need for individual data protection
