@@ -12,7 +12,8 @@ const HeaderWrapper = styled.header`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 70px;
+  height: 80px;
+  margin-top: -15px;
   background-color: white;
   transition: background-color ${props => props.theme.transition},
     box-shadow 0.3s;
@@ -24,8 +25,8 @@ const HeaderWrapper = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 0.5rem auto;
-    width: 50%;
+    margin: 0.9rem auto;
+    margin-left: 25%;
     
       a{
         font-size: 1.2rem;
@@ -101,6 +102,7 @@ const HeaderWrapper = styled.header`
     height: 80px;
     .navContainer {
       height: 80px;
+      line-height: 27px;
       #logo {
         width: 205px;
         height: auto;

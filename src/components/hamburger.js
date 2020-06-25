@@ -4,8 +4,8 @@ import styled from "styled-components"
 const HamburgerButton = styled.button`
   outline: none;
   position: fixed;
-  top: 19px;
-  left: 15px;
+  top: 13px;
+  right: 15px;
   z-index: 100;
   &::selection {
     outline: none;
