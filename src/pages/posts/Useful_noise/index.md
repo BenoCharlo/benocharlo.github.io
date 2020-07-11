@@ -31,13 +31,11 @@ Between 2002-2004, researchers at Columbia Business School [1] collected informa
 
 For each participant, it is reported the interactions features with other participants and the
 
-<p align="center">
-<img src="../../../../materials/posts/useful_noise/figs/dataset.png" width="400">
-</p>
+<img class="image" src="figs/dataset.png" alt="dataset of the experimentation" width="400"/>
 
-<center><i>Fig 1 : Dataset used in the experimentation</i></center>
+<center><i>Fig 1: Dataset used in the experimentation</i></center>
 
-The data from [OpenML](https://www.openml.org/) can be access [here](https://www.openml.org/d/40536)
+The data is taken from [OpenML](https://www.openml.org/) and can be access [here](https://www.openml.org/d/40536)
 
 ## References
 
