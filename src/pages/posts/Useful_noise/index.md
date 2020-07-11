@@ -1,5 +1,5 @@
 ---
-title: "Useful noise ... (loading 📝)"
+title: "Useful noise"
 date: "2020-03-10"
 tags: privacy social interactions
 ---
@@ -27,8 +27,17 @@ The promise of DP is to ensure the plausible deniability of any user's informati
 
 ## Experimental data
 
-Between 2002-2004, researchers at Columbia Business School[1] collected information form experimental speed dating events. The participants have 4 minutes to talk with every other participant of the opposite sex.
-The data from [OpenML](https://www.openml.org/d/40536)
+Between 2002-2004, researchers at Columbia Business School [1] collected information form experimental speed dating events. The participants have 4 minutes to chat with every other participant of the opposite sex. The organizers collected many attributes such as match decision(if they want to see the other partner after each 4 four minutes talk) demographics, self-perception attributes, beliefs, attractiveness, sincerity, ambition, intelligence, fun, etc. The match variable is the target variable.
+
+For each participant, it is reported the interactions features with other participants and the
+
+<p align="center">
+<img src="../../../../materials/posts/useful_noise/figs/dataset.png" width="400">
+</p>
+
+<center><i>Fig 1 : Dataset used in the experimentation</i></center>
+
+The data from [OpenML](https://www.openml.org/) can be access [here](https://www.openml.org/d/40536)
 
 ## References
 
