@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
+import { ThemeContext } from "../utils/themeContext"
 import Header from "./header"
 import SEO from "../components/seo"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
+import { ThemeProvider } from "styled-components"
+import ThemeToggleBtn from "./themeToggle"
 import MobileNav from "./mobilenav"
 
 const LayoutWrapper = styled.div`
@@ -42,6 +45,8 @@ const LayoutWrapper = styled.div`
 export default function Layout({ children }) {
   let [mobileNavIsOpen, toggleMobileNav] = useState(false)
 
+  const theme = useContext(ThemeContext)
+
   const mobileNavAction = () => {
     toggleMobileNav(
       mobileNavIsOpen ? (mobileNavIsOpen = false) : (mobileNavIsOpen = true)
@@ -70,16 +75,14 @@ export default function Layout({ children }) {
     `
   )
   return (
-    // <div
-    //   className="container"
-    //   style={{ margin: `2rem auto`, maxWidth: 850, padding: `0 1rem` }}
-    // >
-    <LayoutWrapper>
-      <SEO {...data.site.siteMetadata} />
-      <Header />
-      <MobileNav mobileNavIsOpen={mobileNavIsOpen} action={mobileNavAction} />
-      <main>{children}</main>
-    </LayoutWrapper>
-    // </div>
+    <ThemeProvider theme={theme.currentTheme}>
+      <LayoutWrapper>
+        <SEO {...data.site.siteMetadata} />
+        <Header />
+        <MobileNav mobileNavIsOpen={mobileNavIsOpen} action={mobileNavAction} />
+        <main>{children}</main>
+        {/* <ThemeToggleBtn /> */}
+      </LayoutWrapper>
+    </ThemeProvider>
   )
 }
