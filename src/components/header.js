@@ -59,14 +59,14 @@ const HeaderWrapper = styled.header`
       }
     }
     nav {
-      margin: 40px 0 0 370px;
+      margin: 40px 0 0 310px;
       margin-right: 0.5rem auto;
       ul {
         display: flex;
         flex-direction: row;
         list-style-type: none;
         li {
-          margin-right: 0;
+          margin: 0 7px 9px 3px;
           list-style-type: none;
           justify-content: space-around;
           a {
@@ -194,6 +194,11 @@ export default function Header() {
                 <Link to="/about" activeClassName="activePage">
                   About
                 </Link>{" "}
+              </li>
+              <li>
+                <Link to="/certifications" activeClassName="activePage">
+                  Certifs
+                </Link>
               </li>
             </ul>
           </nav>

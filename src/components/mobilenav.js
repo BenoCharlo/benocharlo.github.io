@@ -55,8 +55,9 @@ const MobileNavWrapper = styled.div`
       nav {
         ul {
           list-style-type: none;
-          margin: 0px 10px 60px 20px;
+          margin: 0px 10px 60px 40px;
           li {
+            margin: 10px 0 20px 0;
             list-style-type: none;
             a {
               transition: ${props => props.theme.transition};
@@ -100,6 +101,11 @@ const MobileNav = ({ mobileNavIsOpen, action }) => {
               <li>
                 <Link activeClassName="activePage" to="/about">
                   About
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="activePage" to="/certifications">
+                  Certifs
                 </Link>
               </li>
             </ul>
