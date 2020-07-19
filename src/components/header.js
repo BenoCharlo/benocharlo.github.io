@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import Linkedin from "../images/svg/LinkedinSVG"
+import Linkedin from "../images/svg/LinkedInSVG"
 import Github from "../images/svg/GithubSVG"
+import Twitter from "../images/svg/TwitterSVG"
 import fadeInUpward from "../styles/_animations/fadeInUpward"
 import styled from "styled-components"
 import "../styles/hamburgers.css"
@@ -143,6 +144,7 @@ export default function Header() {
           siteMetadata {
             authorLinkedIn
             authorGithub
+            authorTwitter
           }
         }
       }
@@ -176,6 +178,15 @@ export default function Header() {
             aria-label="My Github page"
           >
             <Github />
+          </a>{" "}
+          <a
+            className="activeElement"
+            target="_blank"
+            href={data.site.siteMetadata.authorTwitter}
+            rel="noopener noreferrer"
+            aria-label="My Github page"
+          >
+            <Twitter />
           </a>
           <nav>
             <ul>

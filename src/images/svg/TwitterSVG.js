@@ -5,8 +5,8 @@ const Twitter = () => {
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
+      width="20"
+      height="20"
       viewBox="0 0 49.652 49.652"
     >
       <g>

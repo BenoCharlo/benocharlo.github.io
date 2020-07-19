@@ -7,6 +7,7 @@ module.exports = {
     image: `src/static/favicon-32x32.png`,
     authorLinkedIn: `https://www.linkedin.com/in/beno-charles-dokodjo-26234210b/`,
     authorGithub: `https://github.com/BenoCharlo`,
+    authorTwitter: `https://twitter.com/BenoKwassi/`,
   },
   plugins: [
     {
@@ -57,5 +58,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-dark-mode`,
   ],
 }
