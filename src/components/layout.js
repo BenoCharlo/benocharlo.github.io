@@ -31,14 +31,13 @@ const LayoutWrapper = styled.div`
   main {
     transition: ${props => props.theme.transition};
     background-color: ${props => props.theme.bgColor};
-    width: 50vw;
-    padding: 12px 0px 24px;
     margin: 80px auto;
+    width: 100%;
+    padding: 12px 0px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    //align-items: center;
-    // max-width: 10000px;
+    max-width: 700px;
   }
 `
 
