@@ -30,12 +30,27 @@ The data is taken from [OpenML](https://www.openml.org/) and can be access [here
 
 ### Differential Privacy in a nutshell
 
-Differential Privacy (DP) is a mechanism designed to protect information of individuals through a randomized process. Concretely, it introduces noise into the data in order to retain information from an attacker (any individual who might want to access information that is not intended to be disclosed). There exists two forms of DP:
+Differential Privacy (DP) is a mechanism designed to protect information of individuals through a randomized process. Concretely, it introduces noise into the data in order to retain information from an attacker (any individual who might want to access information that is not intended to be disclosed).
 
-- the (global) DP in which data is collected from every individuals and aggregated into a single database (or server); the noise is then introduced in an aggregated result of the collected data before publishing.
-- the Local Differential Privacy (LDP) in which the noise is introduced in every individual data before centralization by the aggregator. This setting brings stronger privacy guarantees than the previous one as individuals do not have to trust the aggregator. But the cost of applying LDP form is to have a huge dataset so we can average out the local noises added to each individual-level information.
+The promise of DP is to ensure the plausible deniability of any user's information who shares his/her data. This means, the results of a data analysis will not change if any individual from the database have not been part of the dataset. There exists two forms of DP:
 
-The promise of DP is to ensure the plausible deniability of any user's information who shares his/her data. This means, the results of a data analysis will not change if any individual from the database decide to opt out from the database.
+- the (global) DP in which data is collected from every individuals and centralized into a single database (or server); the noise is then introduced in an aggregated result of a query, of the centralized data before publishing.
+- the Local Differential Privacy (LDP) in which every individual send a noisy data and holds the true data on their devices. The noisy data is centralized by the aggregator. This setting brings stronger privacy guarantees than the previous one as individuals do not have to trust the aggregator. But the cost of applying LDP form is to have a huge dataset so we can average out the local noises added to each individual-level information.
+
+For more advanced tasks such as modelization, there is a need to have a DP mechanism enforced into the algorithms. It has been demonstrated that some machine learning models especially deep learning models have the ability to memorized part of the training data. By a reverse-engineered process, one can recover the individuals from a deployed deep learning model. Here comes the notion of **privacy preserving machine learning (PPML)** that achieves a certain level of privacy with machine learning models.
+
+One such approach of enforcing privacy into advanced machine learning models is **DP-SGD (Differentially Private Stochastic Gradient Descent)** designed by Abadi et al [2].
+
+### Principle of DP-SGD
+
+SGD is a very used optimization technique in machine learning algorithms. It is a procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . This [post](https://ruder.io/optimizing-gradient-descent/) gives a clear understanding on the gradient descent subject.
+
+### Baseline Model
+
+Two approaches have been developped to the goal of PPML:
+
+- DP-SGD (Differentially Private Stochastic Gradient Descent): SGD is an optimization procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . This [post](https://ruder.io/optimizing-gradient-descent/) gives a clear understanding on the gradient descent subject. DP-SGD brings two additional elements that are _gradient clipping_ and _gradients sanitization_
+- PATE (Private Aggregation of Teacher Ensembles)
 
 For any database, we need to quantify the amount of privacy we spread into the data. Here comes the notion of **_privacy budget_**.
 
@@ -49,7 +64,7 @@ For an introduction to the concept of DP, please take a look at [my first](https
 
 ### Learning privately from the data
 
-As a first step, I will build a classification model to determine who will probably match in the future, based on the data I have. I decided to go for neural nets build with Tensorflow/Keras.
+As a first step, I will build a classification model to determine who will probably match in the future, based on the data I have. I decided to build for neural nets using Tensorflow/Keras.
 
 The model architecture is show below:
 
@@ -57,8 +72,8 @@ The model architecture is show below:
 
 ### References
 
-1. Raymond Fisman, Sheena S. Iyengar, Emir Kamenica, Itamar Simonson [Gender Differences in Mate Selection: Evidence From a Speed Dating Experiment](https://doi.org/10.1162/qjec.2006.121.2.673), The Quarterly Journal of Economics, Volume 121, Issue 2, 1 May 2006, Pages 673–697
-2.
+1. Raymond Fisman, Sheena S. Iyengar, Emir Kamenica, Itamar Simonson [_Gender Differences in Mate Selection: Evidence From a Speed Dating Experiment_](https://doi.org/10.1162/qjec.2006.121.2.673), The Quarterly Journal of Economics, Volume 121, Issue 2, 1 May 2006, Pages 673–697
+2. Martín Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, Li Zhang [_Differential Private Deep Learning_](https://arxiv.org/pdf/1607.00133.pdf)
 3.
 4.
 5. this massive data usage is not totally harmless for the end-users.
