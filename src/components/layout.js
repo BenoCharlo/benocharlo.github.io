@@ -39,6 +39,12 @@ const LayoutWrapper = styled.div`
     justify-content: space-around;
     max-width: 700px;
   }
+
+  @media screen and (min-width: 1500px) {
+    main {
+      max-width: 880px;
+    }
+  }
 `
 
 export default function Layout({ children }) {
