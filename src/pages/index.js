@@ -56,7 +56,7 @@ const BlogListWrapper = styled.div`
       justify-content: space-around;
       width: 102px;
       height: 37px;
-      margin: -10px 0 15px;
+      margin: -10px 0 -10px;
       padding: 8px;
       background-color: lightgray;
       transition: 0.3s;
