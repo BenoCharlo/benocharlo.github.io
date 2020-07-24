@@ -37,12 +37,12 @@ const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    max-width: 700px;
+    max-width: 880px;
   }
 
-  @media screen and (min-width: 1500px) {
+  @media screen and (max-width: 1500px) {
     main {
-      max-width: 880px;
+      max-width: 700px;
     }
   }
 `
