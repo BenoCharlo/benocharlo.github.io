@@ -119,6 +119,12 @@ const HeaderWrapper = styled.header`
       }
     }
   }
+
+  @media screen and (min-width: 1500px) {
+    nav {
+      margin: 40px 0 0 500px;
+    }
+  }
 `
 
 export default function Header() {

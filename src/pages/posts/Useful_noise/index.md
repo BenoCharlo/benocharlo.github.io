@@ -2,7 +2,38 @@
 title: "Useful noise"
 date: "2020-03-10"
 tags: privacy social interactions
+description: description
 ---
+
+<style type="text/css">
+.card {
+  width: 37em;
+  margin: 0 0 0 15%;
+  text-align: center;
+  background-color: #FFF8DC;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: -0.5px 5px;
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+    width: 30em;
+    margin: 0
+  }
+}
+
+</style>
 
 This post excerpt. It contains elements about the content of the posts
 
@@ -32,7 +63,7 @@ The data is taken from [OpenML](https://www.openml.org/) and can be access [here
 
 Differential Privacy (DP) is a mechanism designed to protect information of individuals through a randomized process. Concretely, it introduces noise into the data in order to retain information from an attacker (any individual who might want to access information that is not intended to be disclosed).
 
-The promise of DP is to ensure the plausible deniability of any user's information who shares his/her data. This means, the results of a data analysis will not change if any individual from the database have not been part of the dataset. There exists two forms of DP:
+The promise of DP is to ensure the plausible deniability of any user's information who shares his/her data. This means, the results of a data analysis will not change if any individual from the database have not been part of the dataset. For an introduction to the concept of DP, please take a look at [my first post](https://medium.com/@capgemini.invent.europe/differential-privacy-embedding-privacy-into-data-usage-f827f620f886) on the subject. There exists two forms of DP:
 
 - the (global) DP in which data is collected from every individuals and centralized into a single database (or server); the noise is then introduced in an aggregated result of a query, of the centralized data before publishing.
 - the Local Differential Privacy (LDP) in which every individual send a noisy data and holds the true data on their devices. The noisy data is centralized by the aggregator. This setting brings stronger privacy guarantees than the previous one as individuals do not have to trust the aggregator. But the cost of applying LDP form is to have a huge dataset so we can average out the local noises added to each individual-level information.
@@ -41,32 +72,37 @@ For more advanced tasks such as modelization, there is a need to have a DP mecha
 
 One such approach of enforcing privacy into advanced machine learning models is **DP-SGD (Differentially Private Stochastic Gradient Descent)** designed by Abadi et al [2].
 
-### Principle of DP-SGD
+### Main principle of DP-SGD
 
-SGD is a very used optimization technique in machine learning algorithms. It is a procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . This [post](https://ruder.io/optimizing-gradient-descent/) gives a clear understanding on the gradient descent subject.
+SGD is a core technique in deep learning algorithms. It is an optimization procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . For a more understanding on the gradient descent, please see this [post](https://ruder.io/optimizing-gradient-descent/).
+
+<div class="card">
+  <div class="container">
+    <h3>
+    <i>
+    The basic idea behind DP-SGD is to control the influence of the 
+    training data during the training process
+    </i>
+    </h3>
+  </div>
+</div>
+<h2></h2>
+DP-SGD brings two modifications:
+
+- gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we sacle it down by a factor of _l2 norm_ &divide; C
+- gradients radnom noise : a gaussian noise is sampled and added to every clipped gradients; this ensures the deniability of any individual in the training set as an adversary who has information about the model's parameters cannot recover any training data point.
+
+In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming post</a>, I will explain in detail two PPML techniques : DP-SGD and PATE. Now let's move on to our formal modelisation.
 
 ### Baseline Model
 
-Two approaches have been developped to the goal of PPML:
+As a first step, I will build a classification model to determine the probability of a future match, based on the data I have. I decided to go for neural nets using Tensorflow/Keras. This framework will also serve for the privacy computation.
 
-- DP-SGD (Differentially Private Stochastic Gradient Descent): SGD is an optimization procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . This [post](https://ruder.io/optimizing-gradient-descent/) gives a clear understanding on the gradient descent subject. DP-SGD brings two additional elements that are _gradient clipping_ and _gradients sanitization_
-- PATE (Private Aggregation of Teacher Ensembles)
-
-For any database, we need to quantify the amount of privacy we spread into the data. Here comes the notion of **_privacy budget_**.
-
-<div id="input-type" style="text-align:center";>
-  <input type="range" id="epsilon" name="epsilon"
-         min="0" max="11"/>
-  <label for="epsilon">Epsilon</label>
-</div>
-
-For an introduction to the concept of DP, please take a look at [my first](https://medium.com/@capgemini.invent.europe/differential-privacy-embedding-privacy-into-data-usage-f827f620f886) post on the subject.
+The model architecture is show below:
 
 ### Learning privately from the data
 
-As a first step, I will build a classification model to determine who will probably match in the future, based on the data I have. I decided to build for neural nets using Tensorflow/Keras.
-
-The model architecture is show below:
+### Measure of the privacy guarantee
 
 ### Future directions
 
