@@ -4,16 +4,16 @@ const typography = new Typography({
   baseFontSize: "16px",
   baseLineHeight: 1.666,
   headerFontFamily: ["Helvetica", "georgia"],
-  bodyFontFamily: ["Helvetica", "sans-serif"],
+  bodyFontFamily: ["Franklin_gothic", "Arial"],
   bodyColor: "black",
   headerColor: "black",
   googleFonts: [
     {
-      name: "Helvetica",
+      name: "Franklin_gothic",
       styles: ["800", "400"],
     },
     {
-      name: "Open Sans",
+      name: "Arial",
       styles: ["400", "300", "200"],
     },
   ],
