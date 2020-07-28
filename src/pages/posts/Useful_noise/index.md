@@ -70,7 +70,7 @@ The promise of DP is to ensure the plausible deniability of any user's informati
 
 For more advanced tasks such as modelization, there is a need to have a DP mechanism enforced into the algorithms. It has been demonstrated that some machine learning models especially deep learning models have the ability to memorized part of the training data. By a reverse-engineered process, one can recover the individuals from a deployed deep learning model. Here comes the notion of **privacy preserving machine learning (PPML)** that achieves a certain level of privacy with machine learning models.
 
-One such approach of enforcing privacy into advanced machine learning models is **DP-SGD (Differentially Private Stochastic Gradient Descent)** designed by Abadi et al [2].
+One such approach of enforcing privacy into an advanced machine learning algorithm is **DP-SGD (Differentially Private Stochastic Gradient Descent)** designed by Abadi et al [2].
 
 ### Main principle of DP-SGD
 
@@ -87,16 +87,18 @@ SGD is a core technique in deep learning algorithms. It is an optimization proce
   </div>
 </div>
 <h2></h2>
-DP-SGD brings two modifications:
+DP-SGD brings two modifications to the classical SGD:
 
-- gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we sacle it down by a factor of _l2 norm_ &divide; C
-- gradients radnom noise : a gaussian noise is sampled and added to every clipped gradients; this ensures the deniability of any individual in the training set as an adversary who has information about the model's parameters cannot recover any training data point.
+- gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we sacle it down by a factor of _l2 norm_ divided by C
+- gradients random noise : a gaussian noise is sampled and added to every clipped gradients; this ensures the deniability of any individual in the training set as an adversary who has information about the model's parameters cannot recover any training data point.
 
 In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming post</a>, I will explain in detail two PPML techniques : DP-SGD and PATE. Now let's move on to our formal modelisation.
 
 ### Baseline Model
 
-As a first step, I will build a classification model to determine the probability of a future match, based on the data I have. I decided to go for neural nets using Tensorflow/Keras. This framework will also serve for the privacy computation.
+As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. This framework will also serve for the privacy computation.
+
+The best model computation run on this dataset gives 87% in predictive accuracy. While, the main purpose of this post is not about improving the accuracy score of this dataset, we will try to achieve a 90% accuracy score for the match variable.
 
 The model architecture is show below:
 
