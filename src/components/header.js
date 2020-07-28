@@ -26,7 +26,7 @@ const HeaderWrapper = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 0.9rem auto;
+    margin: 0.7rem auto;
     margin-left: 25%;
     
       a{
