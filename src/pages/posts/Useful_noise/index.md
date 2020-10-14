@@ -37,15 +37,13 @@ description: description
 
 This post excerpt. It contains elements about the content of the posts
 
-There are a lot of data-powered applications and this number is believed to increase for the decades to come. From search engines to recommendations systems, images and videos applications to text understanding applications, etc, data-applications has taken a huge place in the lives of many people. Teams (data scientists, software engineers and subject-matter experts) in charge of building these applications are usually eager to collect any type of data and use them for analysis, prediction models and sometimes sharing (for data science competitions purposes for example). However, breaches have been documented in the past years and have shown the massive collection is not totally harmless to the end-users of this applications.
+Data-powered applications are the essence of the AI era, and the number of these apps is believed to increase for the decades to come. From search engines to recommendations systems, images and videos applications to text understanding applications, etc, data-apps have taken a huge place in the lives of many people. Teams (data scientists, software engineers and subject-matter experts) in charge of building these apps are usually eager to collect any type of data and use them for analysis, prediction models and sometimes sharing (for data science competitions purposes for example). However, breaches and data leakages have been documented in the past years and have shown the intensive data collection is not totally harmless to the end-users of these apps.
 
-Existing scientific litterature had proven differential privacy is an effective way to ensure users information protection in machine learning applications. The technique has been pionneered by Cynthia Dwork since the early 2000's and has received a lot of attention in the community ever since. Some of the big players in AI ground (Apple, Google, Microsoft, Samsung) have productionize it to preserve users privacy. This technique can clearly help fill the trust gap between curators and users. **_Applying this idea, I will try to preserve users information in a database using machine learning to analyse and predict._**
+Existing scientific litterature had proven differential privacy to be an effective way to ensure users's privacy in data collection and/or machine learning analysis. The technique has been pionneered by Cynthia Dwork since the early 2000's and has received a lot of attention in the community ever since. Some of the big players in AI ground (Apple, Google, Microsoft, Samsung) have productionize it to preserve users privacy. This technique can clearly help fill the trust gap between curators and users. **_Applying this idea, I will try to preserve users information in a database while building machine learning model._**
 
 ### Experimental data
 
-Between 2002-2004, researchers at Columbia Business School [1] collected information form experimental speed dating events. The participants have 4 minutes to chat with every other participant of the opposite sex. The organizers collected many attributes such as match decision(if they want to see the other partner after each 4 four minutes talk) demographics, self-perception attributes, beliefs, attractiveness, sincerity, ambition, intelligence, fun, etc. The **_"match"_** variable is the target variable.
-
-For each participant, it is reported the interactions features with other participants and the
+Between 2002-2004, researchers at Columbia Business School [1] collected information from experimental speed dating events. The participants have 4 minutes to chat with every other participant of the opposite sex (we are quite far from the **Tinder-world** we know now 😅). The organizers collected many attributes such as match decision(if they want to see the other partner after the 4 four minutes talk), demographics, self-perception attributes, other perception attributes, beliefs, attractiveness, sincerity, ambition, intelligence, fun, etc. The **_"match"_** variable is the target variable.
 
 <p align="center">
 <img class="image" src="./materials/figs/dataset.png" alt="dataset of the experimentation" width="400"/>
@@ -55,7 +53,7 @@ For each participant, it is reported the interactions features with other partic
 
 <p></p>
 
-So for this dataset, the first indiviudal (who is a female) have interactions with 10 males. She is 21 and she accepted to meet (target variable match) 4 out of the 10 males, after the speed dating events. She is an asian american and has met with 8 caucasian american, 1 asian american and 1 hispanic american.
+So for this dataset, the first indiviudal (who is a female) have interactions with 10 males during the speed dating events. She is 21 and she has accepted to meet with (target variable match) 4 out of the 10 males, after the events. She is an asian american and has met with 8 caucasian american, 1 asian american and 1 hispanic american.
 
 The data is taken from [OpenML](https://www.openml.org/) and can be access [here](https://www.openml.org/d/40536)
 
@@ -66,9 +64,9 @@ Differential Privacy (DP) is a mechanism designed to protect information of indi
 The promise of DP is to ensure the plausible deniability of any user's information who shares his/her data. This means, the results of a data analysis will not change if any individual from the database have not been part of the dataset. For an introduction to the concept of DP, please take a look at [my first post](https://medium.com/@capgemini.invent.europe/differential-privacy-embedding-privacy-into-data-usage-f827f620f886) on the subject. There exists two forms of DP:
 
 - the (global) DP in which data is collected from every individuals and centralized into a single database (or server); the noise is then introduced in an aggregated result of a query, of the centralized data before publishing.
-- the Local Differential Privacy (LDP) in which every individual send a noisy data and holds the true data on their devices. The noisy data is centralized by the aggregator. This setting brings stronger privacy guarantees than the previous one as individuals do not have to trust the aggregator. But the cost of applying LDP form is to have a huge dataset so we can average out the local noises added to each individual-level information.
+- the Local Differential Privacy (LDP) in which every individual sends a noisy data and holds the true data on their devices. The noisy data is centralized by the aggregator. This setting brings stronger privacy guarantees than the previous one as individuals do not have to trust the aggregator. The cost of applying LDP instead of the glovbal DP is to have a huge dataset so we can average out the local noises added to each individual-level information.
 
-For more advanced tasks such as modelization, there is a need to have a DP mechanism enforced into the algorithms. It has been demonstrated that some machine learning models especially deep learning models have the ability to memorized part of the training data. By a reverse-engineered process, one can recover the individuals from a deployed deep learning model. Here comes the notion of **privacy preserving machine learning (PPML)** that achieves a certain level of privacy with machine learning models.
+For more advanced tasks such as modelization, there is a need to have a DP mechanism enforced into the algorithms. It has been demonstrated that some machine learning models especially deep learning models have the ability to memorized part of the training data. By a reverse-engineered process, one can recover the individuals' data from a deployed deep learning model. Here comes the notion of **privacy preserving machine learning (PPML)** that achieves a certain level of privacy within machine learning algorithms.
 
 One such approach of enforcing privacy into an advanced machine learning algorithm is **DP-SGD (Differentially Private Stochastic Gradient Descent)** designed by Abadi et al [2].
 
@@ -80,8 +78,8 @@ SGD is a core technique in deep learning algorithms. It is an optimization proce
   <div class="container">
     <h3>
     <i>
-    The basic idea behind DP-SGD is to control the influence of the 
-    training data during the training process
+    The basic idea behind DP-SGD is to control the influence of 
+    each training example during the training process
     </i>
     </h3>
   </div>
@@ -89,7 +87,7 @@ SGD is a core technique in deep learning algorithms. It is an optimization proce
 <h2></h2>
 DP-SGD brings two modifications to the classical SGD:
 
-- gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we sacle it down by a factor of _l2 norm_ divided by C
+- gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we scale it down by a factor of _l2 norm_ divided by C. Gradients' clipping is a very well know technique in deep learning community
 - gradients random noise : a gaussian noise is sampled and added to every clipped gradients; this ensures the deniability of any individual in the training set as an adversary who has information about the model's parameters cannot recover any training data point.
 
 In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming post</a>, I will explain in detail two PPML techniques : DP-SGD and PATE. Now let's move on to our formal modelisation.
