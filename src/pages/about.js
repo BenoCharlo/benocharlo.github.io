@@ -45,9 +45,9 @@ export default function About({ data }) {
         </a>{" "}
         in 2018. When I am not working for Invent, I compete on data science
         platforms most of my time, build my personal blog (still in progress). I
-        am also upskilling a lot about quantitative trading and techniques in
-        ethics in AI (differential privacy, federated learning, fairness, secure
-        multiparty computation).
+        am also upskilling a lot about techniques in ethics and privacy in AI
+        (differential privacy, federated learning, fairness, secure multiparty
+        computation). I am a fan of Django and React.js
       </p>
     </Layout>
   )
