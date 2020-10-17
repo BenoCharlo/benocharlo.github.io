@@ -7,4 +7,4 @@ export const wrapRootElement = ({ element }) => (
 )
 
 // ? primsjs stuff
-require("prismjs/themes/prism-tomorrow.css")
+// require("prismjs/themes/prism-tomorrow.css")
