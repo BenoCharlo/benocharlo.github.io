@@ -5,7 +5,6 @@ import SEO from "../components/seo"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { ThemeProvider } from "styled-components"
-import ThemeToggleBtn from "./themeToggle"
 import MobileNav from "./mobilenav"
 
 const LayoutWrapper = styled.div`
