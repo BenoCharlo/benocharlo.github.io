@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{"3XHS":function(n,a,e){"use strict";e.r(a),e.d(a,"default",(function(){return u})),e.d(a,"query",(function(){return c}));var t=e("q1tI"),r=e.n(t),i=e("Bl7J");function u(n){n.data;return r.a.createElement(i.a,null,r.a.createElement("p",null,"I am Beno-Charles DOKODJO, a data scientist living in Paris. I am currently working at Capgemini Invent, a consulting firm in Paris area. I graduated from Ensai in 2018."))}var c="1097489062"}}]);
-//# sourceMappingURL=component---src-pages-about-js-17c84a184c2d0971bf1b.js.map
