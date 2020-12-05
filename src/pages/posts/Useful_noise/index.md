@@ -8,7 +8,9 @@ description: description
 <style type="text/css">
 .card {
   width: 37em;
-  margin: 0 0 0 15%;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
   text-align: center;
   background-color: #FFF8DC;
   /* Add shadows to create the "card" effect */
@@ -29,7 +31,6 @@ description: description
 @media screen and (max-width: 900px) {
   .card {
     width: 30em;
-    margin: 0
   }
 }
 
@@ -72,7 +73,7 @@ One such approach of enforcing privacy into an advanced machine learning algorit
 
 ### Main principle of DP-SGD
 
-SGD is a core technique in deep learning algorithms. It is an optimization procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . For a more understanding on the gradient descent, please see this [post](https://ruder.io/optimizing-gradient-descent/).
+SGD is a core technique in deep learning algorithms. It is an optimization procedure where at each iteration the error between the model's predictions and the true labels is computed on a sample batch of the data; this error is computed on the derivatives (gradients) of each parameters and the parameters are updated in order to close the gap the true labels and the model's predictions . For a more understanding on the gradient descent, please see this [post](https://ruder.io/optimizing-gradient-descent/) [3].
 
 <div class="card">
   <div class="container">
@@ -98,20 +99,23 @@ As a first step, I will build a classification model to determine the probabilit
 
 The best model computation run on this dataset gives 87% in predictive accuracy. While, the main purpose of this post is not about improving the accuracy score of this dataset, we will try to achieve a 90% accuracy score for the match variable.
 
-The model architecture is show below:
+The model architecture is shown below:
 
 ### Learning privately from the data
 
-### Measure of the privacy guarantee
+Abadi et al, have designed a set of hyperparameters that can be tuned for learning privately using DP-SGD:
 
-### Future directions
+- *l2\_norm\_clip*: this is the clipping factor that we have talked about earlier. Any gradient is not allowed to exceed a proportion of this factor.
+- *noise\_multiplier* : this parameter is the level of noise we add to each clipped gradient. The more noise we add to the gradients, the more private and the lesser accurate the model is.
+- *microbatches* : for a more private learning, the gradients should be clipped one by one. But this implies a computational overhead. A solution to reduce the computational overhead is to increase the size of microbatches, meaning grouping more gradients and clipping the averaged gradient. The authors of the DP-SGD have designed the bacth size to be evenly divided by the *microbatches*.
+- *learning\_rate* : this is the usual udpate parameter in SGD method. A lower learning rate helps converge but the training procedure is slower.
+
+### Measure of the privacy guarantee
 
 ### References
 
 1. Raymond Fisman, Sheena S. Iyengar, Emir Kamenica, Itamar Simonson [_Gender Differences in Mate Selection: Evidence From a Speed Dating Experiment_](https://doi.org/10.1162/qjec.2006.121.2.673), The Quarterly Journal of Economics, Volume 121, Issue 2, 1 May 2006, Pages 673–697
-2. Martín Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, Li Zhang [_Differential Private Deep Learning_](https://arxiv.org/pdf/1607.00133.pdf)
-3.
+2. Martin Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, Li Zhang [_Differential Private Deep Learning_](https://arxiv.org/pdf/1607.00133.pdf)
+3. Sebastian Ruder, [_An overview of gradient descent optimization algorithms_](https://ruder.io/optimizing-gradient-descent/)
 4.
-5. this massive data usage is not totally harmless for the end-users.
-   A well known statistic informs us that one-third of US populations can be fully retrieved using the ZIP code, date of birth and ... This simply means, people's informations cannot feel priv
-   Machine Learning applications collect and operate on a broad range of data. In a need to be collecting data, these applications These data can be sensitive in many cases (such as medical data or dating) and can be potentially harmful to individuals if revealed widely. The increasing need for individual data protection
+5.
