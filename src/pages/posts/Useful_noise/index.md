@@ -54,7 +54,11 @@ Between 2002-2004, researchers at Columbia Business School [1] collected informa
 
 <p></p>
 
-So for this dataset, the first indiviudal (who is a female) have interactions with 10 males during the speed dating events. She is 21 and she has accepted to meet with (target variable match) 4 out of the 10 males, after the events. She is an asian american and has met with 8 caucasian american, 1 asian american and 1 hispanic american.
+So for this exceprt of the dataset, the first indiviudal (who is a female) have interactions with 10 males during the speed dating events. She is 21 and she has accepted to meet (target variable ***match***) 4 out of the 10 males, after the events. She is an asian american and has met with 8 caucasian american, 1 asian american and 1 hispanic american.
+
+# PROVIDE MORE INFO ABOUT THE DATASET
+
+The dataset has 8370 rows for 123 columns. There are 1380 matches accounting for 16.5% and there were no missing data.
 
 The data is taken from [OpenML](https://www.openml.org/) and can be access [here](https://www.openml.org/d/40536)
 
@@ -95,11 +99,13 @@ In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming
 
 ### Baseline Model
 
-As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. This framework will also serve for the privacy computation.
+As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. I have made a two-step a train/test split of the dataset. The frist step is an 70-30% division of the dataset. The second step is a split of the 70% part into 80-20% parts. This way, we have a train-validation-test sets for our modelization. Classical!
+
+Some processinng are performed.
+
+The basic model I have built is a simple neural network with 3 dense hidden layers (64, 128 and 256 neurons) and 1 sigmoid activation layer as the output.
 
 The best model computation run on this dataset gives 87% in predictive accuracy. While, the main purpose of this post is not about improving the accuracy score of this dataset, we will try to achieve a 90% accuracy score for the match variable.
-
-The model architecture is shown below:
 
 ### Learning privately from the data
 
@@ -109,6 +115,8 @@ Abadi et al, have designed a set of hyperparameters that can be tuned for learni
 - *noise\_multiplier* : this parameter is the level of noise we add to each clipped gradient. The more noise we add to the gradients, the more private and the lesser accurate the model is.
 - *microbatches* : for a more private learning, the gradients should be clipped one by one. But this implies a computational overhead. A solution to reduce the computational overhead is to increase the size of microbatches, meaning grouping more gradients and clipping the averaged gradient. The authors of the DP-SGD have designed the bacth size to be evenly divided by the *microbatches*.
 - *learning\_rate* : this is the usual udpate parameter in SGD method. A lower learning rate helps converge but the training procedure is slower.
+
+To implement the private learning, I have used (well, you guessed it 😉) [tensorflow-privacy](https://github.com/tensorflow/privacy)
 
 ### Measure of the privacy guarantee
 
