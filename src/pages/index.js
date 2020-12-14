@@ -4,6 +4,24 @@ import Layout from "../components/layout"
 import Moment from "react-moment"
 import styled from "styled-components"
 import RightArrow from "../images/svg/RightArrowSVG"
+import indexImage from "../images/landing_page_imgs/peace_dove.jpg"
+
+const IndexImage = styled.img`
+  .background-image {
+    background-image: url(${indexImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+  }
+  ${"" /* background-image: url(${indexImage});
+  width: 100%;
+  #display: block;
+  margin-left: auto;
+  margin-right: auto; */}
+`
 
 const BlogListWrapper = styled.div`
   transition: ${props => props.theme.transition};
@@ -85,6 +103,7 @@ const BlogListWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <Layout>
+      {/* <IndexImage src={indexImage} /> */}
       <h1>Posts</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogListWrapper>
