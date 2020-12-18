@@ -2,7 +2,7 @@
 title: "Useful noise"
 date: "2020-03-10"
 tags: privacy social interactions
-description: description
+description: In this post, I used a differential privacy technique to privately train a model and preserve individuals records.
 ---
 
 <style type="text/css">
@@ -36,8 +36,6 @@ description: description
 
 </style>
 
-This post excerpt. It contains elements about the content of the posts
-
 Data-powered applications are the essence of the AI era, and the number of these apps is believed to increase for the decades to come. From search engines to recommendations systems, images and videos applications to text understanding applications, etc, data-apps have taken a huge place in the lives of many people. Teams (data scientists, software engineers and subject-matter experts) in charge of building these apps are usually eager to collect any type of data and use them for analysis, prediction models and sometimes sharing (for data science competitions purposes for example). However, breaches and data leakages have been documented in the past years and have shown the intensive data collection is not totally harmless to the end-users of these apps.
 
 Existing scientific litterature had proven differential privacy to be an effective way to ensure users's privacy in data collection and/or machine learning analysis. The technique has been pionneered by Cynthia Dwork since the early 2000's and has received a lot of attention in the community ever since. Some of the big players in AI ground (Apple, Google, Microsoft, Samsung) have productionize it to preserve users privacy. This technique can clearly help fill the trust gap between curators and users. **_Applying this idea, I will try to preserve users information in a database while building machine learning model._**
@@ -50,17 +48,15 @@ Between 2002-2004, researchers at Columbia Business School [1] collected informa
 <img class="image" src="./materials/figs/dataset.png" alt="dataset of the experimentation" width="400"/>
 </p>
 
-<center><i>Fig 1: Dataset used in the experimentation</i></center>
+<center><i>Fig 1: Experimental dataset</i></center>
 
 <p></p>
 
 So for this exceprt of the dataset, the first indiviudal (who is a female) have interactions with 10 males during the speed dating events. She is 21 and she has accepted to meet (target variable ***match***) 4 out of the 10 males, after the events. She is an asian american and has met with 8 caucasian american, 1 asian american and 1 hispanic american.
 
-# PROVIDE MORE INFO ABOUT THE DATASET
-
-The dataset has 8370 rows for 123 columns. There are 1380 matches accounting for 16.5% and there were no missing data.
-
 The data is taken from [OpenML](https://www.openml.org/) and can be access [here](https://www.openml.org/d/40536)
+
+The dataset has 8370 rows for 123 columns. There are 1380 matches meaning 16.5% of the total dataset. Out of the 123 columns, there are a lot of *duplicate* columns, i.e the discretized version of each column. For example, from the *Fig 1* above, the 4th column is the difference of the age between the age of a female participant and a male participant that she has met during the event. The 5th column reprsent the discretized version of this difference. I decided to drop all of the discetized versions of columns. It then remains only 64 columns in the whole dataset.
 
 ### Differential Privacy in a nutshell
 
@@ -99,9 +95,9 @@ In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming
 
 ### Baseline Model
 
-As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. I have made a two-step a train/test split of the dataset. The frist step is an 70-30% division of the dataset. The second step is a split of the 70% part into 80-20% parts. This way, we have a train-validation-test sets for our modelization. Classical!
+As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. I have made a two-step train/test split of the dataset. The frist step is an 70-30% division of the dataset. The second step is a split of the 70% part into 80-20% part each. This way, we have a train-validation-test sets for our modelization. Classical!
 
-Some processinng are performed.
+Some processing are performed.
 
 The basic model I have built is a simple neural network with 3 dense hidden layers (64, 128 and 256 neurons) and 1 sigmoid activation layer as the output.
 
