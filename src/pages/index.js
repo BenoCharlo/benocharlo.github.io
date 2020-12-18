@@ -111,10 +111,7 @@ export default function Home({ data }) {
                 <Link to={node.fields.slug}>
                   <h2>{node.frontmatter.title} </h2>
                 </Link>
-                <h4>
-                  Published:{" "}
-                  <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
-                </h4>
+                <h4>Published: {node.frontmatter.date}</h4>
                 {/* <h5>{node.frontmatter.tags}</h5> */}
                 <p>{node.frontmatter.description}</p>
               </div>
@@ -149,7 +146,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "MMMM DD, YYYY")
             tags
             description
           }
