@@ -4,28 +4,25 @@ import Layout from "../components/layout"
 import Moment from "react-moment"
 import styled from "styled-components"
 import RightArrow from "../images/svg/RightArrowSVG"
-import indexImage from "../images/landing_page_imgs/peace_dove.jpg"
+import indexImage from "../images/landing_page_imgs/lome-plage.jpg"
 
-const IndexImage = styled.img`
-  .background-image {
-    background-image: url(${indexImage});
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-position: center;
+const IndexImage = styled.div`
+  background-image: url(${indexImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  ${"" /* width: 900px; */}
+  height: 800px;
+
+  @media screen and (max-height: 1200px) {
+    height: 1000px;
   }
-  ${"" /* background-image: url(${indexImage});
-  width: 100%;
-  #display: block;
-  margin-left: auto;
-  margin-right: auto; */}
 `
 
 const BlogListWrapper = styled.div`
+  background-color: white;
   transition: ${props => props.theme.transition};
-  margin: 40px 0 25px;
+  margin: 20px 0 25px;
   a {
     color: ${props => props.theme.textColor};
     text-decoration: none;
@@ -102,33 +99,36 @@ const BlogListWrapper = styled.div`
 
 export default function Home({ data }) {
   return (
-    <Layout>
-      {/* <IndexImage src={indexImage} /> */}
-      <h1>Posts</h1>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <BlogListWrapper>
-          <div key={node.id}>
-            <Link to={node.fields.slug}>
-              <h2>{node.frontmatter.title} </h2>
-            </Link>
-            <h4>
-              Published:{" "}
-              <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
-            </h4>
-            {/* <ul>
-              <h5>{node.frontmatter.tags}</h5>
-            </ul> */}
-            <p>{node.excerpt}</p>
-          </div>
-          <Link to={node.fields.slug}>
-            <div className="readMore">
-              <p>Read more</p>
-              <RightArrow />
-            </div>
-          </Link>
-        </BlogListWrapper>
-      ))}
-    </Layout>
+    <div>
+      <div></div>
+      <IndexImage src={indexImage} />
+      <div>
+        <Layout>
+          <h1>Posts</h1>
+          {data.allMarkdownRemark.edges.map(({ node }) => (
+            <BlogListWrapper>
+              <div key={node.id}>
+                <Link to={node.fields.slug}>
+                  <h2>{node.frontmatter.title} </h2>
+                </Link>
+                <h4>
+                  Published:{" "}
+                  <Moment date={node.frontmatter.date} format="MMMM DD, YYYY" />
+                </h4>
+                {/* <h5>{node.frontmatter.tags}</h5> */}
+                <p>{node.frontmatter.description}</p>
+              </div>
+              <Link to={node.fields.slug}>
+                <div className="readMore">
+                  <p>Read more</p>
+                  <RightArrow />
+                </div>
+              </Link>
+            </BlogListWrapper>
+          ))}
+        </Layout>
+      </div>
+    </div>
   )
 }
 
@@ -151,6 +151,7 @@ export const query = graphql`
             title
             date(formatString: "DD MMMM, YYYY")
             tags
+            description
           }
           fields {
             slug
