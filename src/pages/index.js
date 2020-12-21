@@ -12,15 +12,19 @@ const IndexImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   ${"" /* width: 900px; */}
-  height: 800px;
+  height: 1000px;
 
-  @media screen and (max-height: 1200px) {
-    height: 1000px;
+  @media screen and (max-height: 800px) {
+    height: 800px;
+  }
+
+  @media screen and (max-height: 500px) {
+    height: 500px;
   }
 `
 
 const BlogListWrapper = styled.div`
-  background-color: white;
+  background-color: ${props => props.theme.bgColor};
   transition: ${props => props.theme.transition};
   margin: 20px 0 25px;
   a {
