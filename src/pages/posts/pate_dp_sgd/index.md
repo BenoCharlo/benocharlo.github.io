@@ -1,5 +1,5 @@
 ---
-title: "PATE & DP-SGD : privacy techniques"
+title: "Privacy techniques : PATE & DP-SGD"
 date: "2020-03-11"
 tags: #privacy social interactions
 ---
