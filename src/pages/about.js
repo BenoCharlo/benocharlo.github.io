@@ -45,11 +45,11 @@ export default function About({ data }) {
           ENSAI
         </a>{" "}
         in 2018. When I am not working for Invent, I build my personal blog
-        (still in progress). I am also upskilling a lot about cloud-ased
-        architectures (AWS) and techniques in ethics and privacy in AI
-        (differential privacy, federated learning, fairness, secure multiparty
-        computation). I am a fan of Django, React.js frameworks for building
-        end-to-end applications.
+        (still in progress). I am also upskilling a lot about cloud-based
+        solutions (AWS) and techniques of ethics and privacy in AI (differential
+        privacy, federated learning, fairness, secure multiparty computation). I
+        am a fan of Django, React.js frameworks for building end-to-end
+        applications.
       </p>
     </Layout>
   )
