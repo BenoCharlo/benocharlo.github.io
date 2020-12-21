@@ -30,7 +30,7 @@ description: In this post, I used a differential privacy technique to privately 
 
 @media screen and (max-width: 900px) {
   .card {
-    width: 30em;
+    width: 21em;
   }
 }
 
