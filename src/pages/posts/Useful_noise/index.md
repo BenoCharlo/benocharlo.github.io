@@ -1,6 +1,6 @@
 ---
 title: "Useful noise"
-date: "2020-03-10"
+date: "2021-01-17"
 tags: privacy social interactions
 description: In this post, I used a differential privacy technique to privately train a model and preserve individuals records.
 ---
@@ -12,7 +12,7 @@ description: In this post, I used a differential privacy technique to privately 
   float: none; /* Added */
   margin-bottom: 10px; /* Added */
   text-align: center;
-  background-color: #FFF8DC;
+  background-color: #ADD8E6;
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -91,17 +91,35 @@ DP-SGD brings two modifications to the classical SGD:
 - gradients clipping : at each iteration, each individual gradient's _l2 norm_ is clipped by a value C; that is if the _l2 norm_ &le; C, we keep the gradients, and if the _l2 norm_ is &gt; C we scale it down by a factor of _l2 norm_ divided by C. Gradients' clipping is a very well know technique in deep learning community
 - gradients random noise : a gaussian noise is sampled and added to every clipped gradients; this ensures the deniability of any individual in the training set as an adversary who has information about the model's parameters cannot recover any training data point.
 
-In an <a href="http://benocharlo.com/posts/patedp-sgd/" target="_blank">upcoming post</a>, I will explain in detail two PPML techniques : DP-SGD and PATE. Now let's move on to our formal modelisation.
+In an <a href="http://benocharlo.com/posts/pate_dp_sgd/" target="_blank">upcoming post</a>, I will explain in detail two PPML techniques : DP-SGD and PATE. Now let's move on to our formal modelisation.
 
 ### Baseline Model
 
 As a first step, I will build a classification model to determine the probability of a future match, based on the speed-dating data. I decided to go for neural nets using Tensorflow/Keras. I have made a two-step train/test split of the dataset. The frist step is an 70-30% division of the dataset. The second step is a split of the 70% part into 80-20% part each. This way, we have a train-validation-test sets for our modelization. Classical!
 
-Some processing are performed.
+The size of the datasets are :
 
-The basic model I have built is a simple neural network with 3 dense hidden layers (64, 128 and 256 neurons) and 1 sigmoid activation layer as the output.
+| Train | Validation | Test |
+|:------:|:----------:|:-----:|
+|4691   | 1173      |2514  |
 
-The best model computation run on this dataset gives 87% in predictive accuracy. While, the main purpose of this post is not about improving the accuracy score of this dataset, we will try to achieve a 90% accuracy score for the match variable.
+The basic model I have built is a simple neural network with 3 dense hidden layers (64, 128 and 256 neurons) and 1 sigmoid activation layer as the output. A simple summary of the model:
+
+<p align="center">
+<img class="image" src="./materials/figs/model_summary.png" alt="model summary" width="400"/>
+</p>
+
+<center><i>Fig 2: Model summary</i></center>
+
+<p></p>
+
+The performances (accuracy metric) of the model on the three datasets are given below:
+
+| Train | Validation | Test |
+|:------:|:----------:|:-----:|
+|83.42%   | 83.89%      |83.57% |
+
+The model's accuracy is quite stable on the the 3 datasets.
 
 ### Learning privately from the data
 
@@ -110,16 +128,49 @@ Abadi et al, have designed a set of hyperparameters that can be tuned for learni
 - *l2\_norm\_clip*: this is the clipping factor that we have talked about earlier. Any gradient is not allowed to exceed a proportion of this factor.
 - *noise\_multiplier* : this parameter is the level of noise we add to each clipped gradient. The more noise we add to the gradients, the more private and the lesser accurate the model is.
 - *microbatches* : for a more private learning, the gradients should be clipped one by one. But this implies a computational overhead. A solution to reduce the computational overhead is to increase the size of microbatches, meaning grouping more gradients and clipping the averaged gradient. The authors of the DP-SGD have designed the bacth size to be evenly divided by the *microbatches*.
-- *learning\_rate* : this is the usual udpate parameter in SGD method. A lower learning rate helps converge but the training procedure is slower.
+- *learning\_rate* : this is the usual udpate parameter in SGD method. A lower learning rate helps converge but the training process is slower.
 
-To implement the private learning, I have used (well, you guessed it 😉) [tensorflow-privacy](https://github.com/tensorflow/privacy)
+To implement the private learning, I have used (well, you guessed it 😉) [tensorflow-privacy](https://github.com/tensorflow/privacy).
 
-### Measure of the privacy guarantee
+The values of the previous hyperparameters are:
+
+| Hyperparameters | Values |
+|------|:----------:|
+|*l2\_norm\_clip* | 1.5  |
+|*noise\_multiplier* | 0.8  |
+|*microbatches* | 8 |
+|*learning\_rate* | 0.25|
+
+The *microbatches* hyperparameter is designed to be a multiplie of the *batch_size*. One thing quite strange in the implementation of the package is that the datasets need to have a number of rows, also multiple of the *microbatches*. Hence, we need to downsize the training set from 4691 to 4688, the validation size from 1173 to 1168 and the test size from 2514 to 2512.
+
+After running the model using DPGradientGaussianOptimizer, we have the following performances:
+
+| Train | Validation | Test |
+|:------:|:----------:|:-----:|
+|83.43%  | 83.90%   |83.37% |
+
+### Measuring the privacy guarantee
+
+After building the differential privacy model, one's need to assess the level of privacy incurred by the private learning to enable comparison. This level of privacy measures also how much an adversary can improve its knowledge about a single poinnt in the dataset by observing the outcome of the training procedure. This is called the **privacy budget**.
+
+An understanding of the **privacy budget** is given in Nicolas Papernot's blog. A lower privacy budget incurs a stronger privacy([4]):
+
+<div class="card">
+  <div class="container">
+    <h3>
+    <i>
+     Intuitively, this is because it is harder for a single training point to affect the outcome of learning: for instance, the information contained in the training point cannot be memorized by the ML algorithm and the privacy of the individual who contributed this training point to the dataset is preserved.
+    </i>
+    </h3>
+  </div>
+</div>
+<h2></h2>
+
+In tensorflow implementation of DP, the Rényi-DP is used to measure the privacy budget. In our example, the privacy budget is 1.03; which is the upper bound probability of the how much a model can vary by including or excluding a single training point.
 
 ### References
 
 1. Raymond Fisman, Sheena S. Iyengar, Emir Kamenica, Itamar Simonson [_Gender Differences in Mate Selection: Evidence From a Speed Dating Experiment_](https://doi.org/10.1162/qjec.2006.121.2.673), The Quarterly Journal of Economics, Volume 121, Issue 2, 1 May 2006, Pages 673–697
 2. Martin Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, Li Zhang [_Differential Private Deep Learning_](https://arxiv.org/pdf/1607.00133.pdf)
 3. Sebastian Ruder, [_An overview of gradient descent optimization algorithms_](https://ruder.io/optimizing-gradient-descent/)
-4.
-5.
+4. Nicolas Papaernot, [_Machine Learning with Differential Privacy in TensorFlow_](http://www.cleverhans.io/privacy/2019/03/26/machine-learning-with-differential-privacy-in-tensorflow.html)
