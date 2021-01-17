@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import Moment from "react-moment"
 import styled from "styled-components"
 import RightArrow from "../images/svg/RightArrowSVG"
 import indexImage from "../images/landing_page_imgs/lome-plage.jpg"
