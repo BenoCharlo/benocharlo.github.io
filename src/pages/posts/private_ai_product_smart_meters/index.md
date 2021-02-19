@@ -1,5 +1,5 @@
 ---
-title: "Private-AI product conception 1"
+title: "Private-AI product : smart electric meters"
 date: "2021-02-19"
 tags: #privacy encryption smart meters
 ---
