@@ -91,7 +91,7 @@ In the **_privacy book_** by Cynthia Dwork and Aaron Roth [3], the promise of Di
 From an attacker viewpoint, DP is resisting information leakage in a way that it only provides a noisy aggregated information of individuals in a dataset. For a dataset of n individuals, this implies DP will not reveal the information of the last individual if an attacker holds the n-1 individuals information.
 
 <p align="center">
-<img src="materials/Illustration_DP.png" width="400">
+<img src="materials/Illustration_DP.png" width="300">
 </p>
 
 <center><i>Fig 1 : Concept of Differential Privacy from [4]</i></center>
@@ -139,7 +139,7 @@ _f_ is the chosen scoring function
 Considering this medical record dataset, in which we have informations of patients from a district.
 
 <p align="center">
-<img src="materials/medical_record_1.png" width="350">
+<img src="materials/medical_record_1.png" width="300">
 </p>
 <center><i>Table 1 : Illustration from [4]</i></center>
 
@@ -149,17 +149,17 @@ When someone new settle down in the district and has his or her medical record s
 
 But if we apply an exponential mechanism to this query, we will get the following table:
 
-<p align="center"><img src="materials/medical_record_2.png" width="400"></p>
+<p align="center"><img src="materials/medical_record_2.png" width="300"></p>
 
-<center><i>Table 2 : Differents privacy budget for the query from [4]</i></center>
+<center><i>Table 2 : Different privacy budgets for the query from [4]</i></center>
 
 First we can notice whatever privacy budget we choose, we never get the strictly exact result.
 
 We have a much different result from the privacy budget we chose. When &epsilon; is very 0, the probabilities are the same, which means the privacy constraint is too strong. When &epsilon; is very high (equal to 1), the privacy constraint is too weak to render the fair reality. A quite fair reality is rendered when we set &epsilon; to 0.1 as this gives us the nearly true frequencies. And this protects personal informations of patients in the database.
 
-The calculation of the values in the previous table is shown (in case ![formula](https://render.githubusercontent.com/render/math?math=\epsilon=0.1)) below:
+The calculation of the values in the previous table is shown (in case &epsilon;=0.1) below:
 
-<p align="center"><img src="materials/explanation.png" width="400"></p>
+<p align="center"><img src="materials/explanation.png" width="300"></p>
 
 <center><i>Table 3 : Exponential mechanism details</i></center>
 where :
@@ -202,7 +202,7 @@ Let's consider a simple machine learning algorithm, the basic decision tree. Gee
 - For every tree ![formula](https://render.githubusercontent.com/render/math?math=T_{i}), split the data in multiple random partitions
 - Within every final node of the tree, add a laplacian noise to the count of samples for each value of the label.
 
-<p align="center"><img src="materials/SimplePrivateDT.png" width="400"></p>
+<p align="center"><img src="materials/SimplePrivateDT.png" width="300"></p>
 
 <center><i>Fig 2 : Illustration of DP in tree construction</i></center>
 
