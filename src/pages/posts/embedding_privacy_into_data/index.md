@@ -122,7 +122,7 @@ Then, the formal definition of a Laplace mechanism is:
 
 </center>
 
-&Delta; is the sensitivity of the query _f_
+&Delta; is the sensitivity of the query ![formula](https://render.githubusercontent.com/render/math?math=f)
 
 The Exponential mechanism is written :
 
@@ -132,9 +132,9 @@ The Exponential mechanism is written :
 
 </center>
 
-_r_ is the result of the query, i.e the output class for a categorical variable example
+![formula](https://render.githubusercontent.com/render/math?math=r) is the result of the query, i.e the output class for a categorical variable example
 
-_f_ is the chosen scoring function
+![formula](https://render.githubusercontent.com/render/math?math=f) is the chosen scoring function
 
 Considering this medical record dataset, in which we have informations of patients from a district.
 
