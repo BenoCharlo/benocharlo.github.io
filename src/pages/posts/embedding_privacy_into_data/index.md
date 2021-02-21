@@ -3,6 +3,38 @@ title: "Differential Privacy: Embedding Privacy Into Data Usage"
 date: "2020-07-08"
 tags: #differential privacy data
 ---
+
+<style type="text/css">
+.card {
+  width: 37em;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  text-align: center;
+  background-color: #ADD8E6;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: -0.5px 5px;
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+    width: 21em;
+  }
+}
+
+</style>
+
 *[This post was originally published on Capgemini Invent Medium](https://medium.com/swlh/differential-privacy-embedding-privacy-into-data-usage-f827f620f886)*. Many thanks to [Cyprien Henry](https://www.linkedin.com/in/cyprienhenry/?originalSubdomain=fr) for the review.
 
 Data is considered to be the "black gold" of the 21st century. It is everywhere, it comes from multiple sources and it is stored consistently. It has become part of companies's DNA and is key to their strategies. Governments and organizations are not left out of this mass data collection and analysis.
@@ -45,8 +77,17 @@ This is called a **randomized process**. It ensures you the **plausible deniabil
 
 In the **_privacy book_** by Cynthia Dwork and Aaron Roth [3], the promise of Differential Privacy (DP) is simple:
 
+<div class="card">
+  <div class="container">
+    <h3>
+    <i>
     You will not be affected, adversely or otherwise by allowing your data to be used in any study or analysis no matter what other studies, datasets or informations sources are available
-
+    </i>
+    </h3>
+  </div>
+</div>
+<h2></h2>
+    
 From an attacker viewpoint, DP is resisting information leakage in a way that it only provides a noisy aggregated information of individuals in a dataset. For a dataset of n individuals, this implies DP will not reveal the information of the last individual if an attacker holds the n-1 individuals information.
 
 <p align="center">
@@ -57,31 +98,43 @@ From an attacker viewpoint, DP is resisting information leakage in a way that it
 
 The mechanism which yields this aggregated result is said to be **differentially private**.
 
-So, mathematically speaking, let D and D' be two neighboring datasets such as D' has all individuals information in D but one less individual information (that is in D), let M be a randomized process and S the set of output. The mechanism M is $\epsilon$-differentially private if :
+So, mathematically speaking, let D and D' be two neighboring datasets such as D' has all individuals information in D but one less individual information (that is in D), let M be a randomized process and S the set of output. The mechanism M is &epsilon;-differentially private if :
 
-$$ Pr[M(D) \in S ] \leq exp(\epsilon) * Pr[M(D') \in S]$$
+<center>
 
-The factor $\epsilon$ is called the **privacy budget**. This privacy budget defines the level of privacy embedded in the mechanism M. The more private the mechanism, the smaller $\epsilon$.
+![formula](https://render.githubusercontent.com/render/math?math=Pr[M(D) \in S ] \leq exp(\epsilon) * Pr[M(D') \in S])
+
+</center>
+
+The factor &epsilon; is called the **privacy budget**. This privacy budget defines the level of privacy embedded in the mechanism M. The more private the mechanism, the smaller &epsilon;.
 
 How can one then design the mechnanism M in order to protect the individuals information in a dataset?
 
-When a user sends a query to a database, the answer of the query is computed through a function $f$. Before reporting this answer to the user, a noise is added to this function. This noise can be drawn from many probabilistic distributions such as the **_Laplace distribution_**. The Laplace mechanism is suitable for numeric queries and the Exponential mechanism is used for non-numeric queries [4].
+When a user sends a query to a database, the answer of the query is computed through a function _f_. Before reporting this answer to the user, a noise is added to this function. This noise can be drawn from many probabilistic distributions such as the **_Laplace distribution_**. The Laplace mechanism is suitable for numeric queries and the Exponential mechanism is used for non-numeric queries [4].
 
 Before going to the formal definition, we need to know about what is called the **sensitivity**. The sensitivity of a query  function is the amount by which a single individual's information can change the query function. If you recall the neighboring datasets from above, the sensitivity of a mechanism on a _count_ query is 1. That is, when we remove only one individual from the database, the result to the _count query_ differs.
 
 Then, the formal definition of a Laplace mechanism is:
 
-$$ M(D) = f(D) + Lap(\frac{\Delta f}{\epsilon})$$
+<center>
 
-$\Delta f$ is the sensitivity of the query $f$
+![formula](https://render.githubusercontent.com/render/math?math=M(D) = f(D) + Lap(\frac{\Delta f}{\epsilon}))
+
+</center>
+
+&Delta; is the sensitivity of the query _f_
 
 The Exponential mechanism is written :
 
-$$ M(D) = { output \ r \ with \ probability \ \propto \exp(\frac{\epsilon * f(D,r)}{2* \Delta f}) } $$
+<center>
 
-$r$ is the result of the query, i.e the output class for a categorical variable example
+![formula](https://render.githubusercontent.com/render/math?math=M(D) = { output \ r \ with \ probability \ \propto \exp(\frac{\epsilon * f(D,r)}{2* \Delta f}) })
 
-$f$ is the chosen scoring function
+</center>
+
+_r_ is the result of the query, i.e the output class for a categorical variable example
+
+_f_ is the chosen scoring function
 
 Considering this medical record dataset, in which we have informations of patients from a district.
 
@@ -102,22 +155,34 @@ But if we apply an exponential mechanism to this query, we will get the followin
 
 First we can notice whatever privacy budget we choose, we never get the strictly exact result.
 
-We have a much different result from the privacy budget we chose. When $\epsilon$ is very 0, the probabilities are the same, which means the privacy constraint is too strong. When $\epsilon$ is very high (equal to 1), the privacy constraint is too weak to render the fair reality. A quite fair reality is rendered when we set $\epsilon$ to 0.1 as this gives us the nearly true frequencies. And this protects personal informations of patients in the database.
+We have a much different result from the privacy budget we chose. When &epsilon; is very 0, the probabilities are the same, which means the privacy constraint is too strong. When &epsilon; is very high (equal to 1), the privacy constraint is too weak to render the fair reality. A quite fair reality is rendered when we set &epsilon; to 0.1 as this gives us the nearly true frequencies. And this protects personal informations of patients in the database.
 
-The calculation of the values in the previous table is shown (in case $\epsilon=0.1$) below:
+The calculation of the values in the previous table is shown (in case ![formula](https://render.githubusercontent.com/render/math?math=\epsilon=0.1)) below:
 
 <p align="center"><img src="materials/explanation.png" width="400"></p>
 
 <center><i>Table 3 : Exponential mechanism details</i></center>
 where :
 
-$RawValue_{i} = \exp(\frac{0.1*Count_i}{2})$
+<center>
 
-$Probability_i = a*RawValue_{i}$
+![formula](https://render.githubusercontent.com/render/math?math=RawValue_{i} = \exp(\frac{0.1*Count_i}{2}))
 
-$\sum_{i} Probability_i = a*\sum_{i} RawValue_{i} = 1$
+</center>
 
-In this case, $a = 0.09851033$
+<center>
+
+![formula](https://render.githubusercontent.com/render/math?math=Probability_i = a*RawValue_{i})
+
+</center>
+
+<center>
+
+![formula](https://render.githubusercontent.com/render/math?math=\sum_{i} Probability_i = a*\sum_{i} RawValue_{i} = 1)
+
+</center>
+
+In this case, ![formula](https://render.githubusercontent.com/render/math?math=a = 0.09851033)
 
 ### A GLIMPSE INTO LOCAL DIFFERENTIAL PRIVACY (LDP)
 
@@ -127,23 +192,21 @@ In the Local Differential Privacy, users perturb their own data before sending i
 
 This variant brings more strong guarantees on user's data without the need of a third party. For a complete and simple introduction to LDP, more informations in [5, 6]. LDP is accepted in the community as the main way of embedding privacy for users' data. For example Google Randomized Aggregatable Privacy-Preserving Ordinal Response (RAPPOR) is such an implementation of LDP. RAPPOR has been developped for Google Chrome web browser.
 
-<!-- FEW WORDS ON RAPPOR -->
-
 ## DIFFERENTIAL PRIVACY IN MACHINE LEARNING
 
 Let's now look into how one can implement a machine learning algorithm while ensuring privacy.
 
 Let's consider a simple machine learning algorithm, the basic decision tree. Geetha Jagannathan et al [7] have proposed to build a differentially private classifier, not from a simple decision tree but random decision trees which they have shown to prove good results for small datasets. The steps to build this algortihm:
 
-- $N$ is the total number of trees to be constructed
-- For every tree $T_{i}$, split the data in multiple random partitions
+- _N_ is the total number of trees to be constructed
+- For every tree ![formula](https://render.githubusercontent.com/render/math?math=T_{i}), split the data in multiple random partitions
 - Within every final node of the tree, add a laplacian noise to the count of samples for each value of the label.
 
 <p align="center"><img src="materials/SimplePrivateDT.png" width="400"></p>
 
 <center><i>Fig 2 : Illustration of DP in tree construction</i></center>
 
-- To predict a new sample, first make an inference of the decision trees onto the new sample, collect all the partitions from all $N$ trees where the sample appears, sums the count of each label from the collected partitions and computes the probabilities of the sample to belong to either class.
+- To predict a new sample, first make an inference of the decision trees onto the new sample, collect all the partitions from all _N_ trees where the sample appears, sums the count of each label from the collected partitions and computes the probabilities of the sample to belong to either class.
 
 As for Deep Learning methods, the work by Martin Abadi et al ([6]) show how privacy can be ensured while training a neural network. They have (re)designed the Stochastic Gradient Descent algorithm and the hyperparameters tuning under a privacy budget constraint. This privacy constraint has been implemented in [Tensorflow](github.com/tensorflow/models) and is now a complete new feature in Tensorflow 2.0 with the [privacy module](https://github.com/tensorflow/privacy)
 
